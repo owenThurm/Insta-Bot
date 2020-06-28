@@ -21,9 +21,18 @@ class InstagramBot:
          "#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button").click()
 
 
-if __name__ == '__main__':
-    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
+    def search(self, searchText):
+        sleep(2)
+        self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div").click()
+        self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > input").send_keys(searchText)
+        sleep(5)
+        self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div:nth-child(4) > div.drKGC > div > a:nth-child(1)").click()
 
+
+
+if __name__ == '__main__':
+    ig_bot = InstagramBot('username', 'password')
+    ig_bot.search("movingtomars")
 
 
 
