@@ -32,21 +32,27 @@ class InstagramBot:
     def getFollower(self, followerNum):
         sleep(2)
         self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(2) > a").click()
-        sleep(3)
+        sleep(4)
+        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()
 
-        #Failed Attempts to get the followers
-        print(self.driver.find_elements_by_class_name("FPmhX notranslate  _0imsa "))
-        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(2) > div > div.Igw0E.IwRSH.YBx95.vwCYk").find_element_by_class_name("FPmhX notranslate  _0imsa ").click()
+        
 
-    #def comment(self, commentText):
-    #    sleep(2)
-    #    self.driver.find_element_by_css_selector().click
 
+    def comment(self, commentText):
+       sleep(2)
+       self.driver.find_element_by_css_selector("#react-root > section > main > div > div._2z6nI > article > div > div > div:nth-child(1) > div:nth-child(1) > a").click()
+       sleep(2)
+       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
+       sleep(2)
+       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
+       sleep(2)
+       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
 
 if __name__ == '__main__':
-    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
+    ig_bot = InstagramBot('username', 'password')
     ig_bot.search("movingtomars")
     ig_bot.getFollower(1)
+    ig_bot.comment("Vibes")
 
 
 
