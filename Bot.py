@@ -94,7 +94,7 @@ class InstagramBot:
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
 if __name__ == '__main__':
-    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
+    ig_bot = InstagramBot('username', 'password')
     ig_bot.search("washed emotions")
     ig_bot.getFollowerList()
     sleep(2)
