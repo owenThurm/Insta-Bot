@@ -21,7 +21,7 @@ class InstagramBot:
          "#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button").click()
 
     def search(self, searchText):
-        sleep(2)
+        sleep(4)
         #click search bar
         self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div").click()
         #type searchText
@@ -35,10 +35,16 @@ class InstagramBot:
         #clicks the list of followers
         self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(2) > a").click()
 
+    def getFollowerAfterScroll(self, followerNum):
+        sleep(2)
+        #gets the follower that corresponds to followerNum
+        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.t2ksc > div.enpQJ > div.d7ByH > a").click()
+
+
     def getFollower(self, followerNum):
         sleep(2)
         #gets the follower that corresponds to followerNum
-        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()
+        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()    
 
     def comment(self, commentText):
        sleep(2)
@@ -47,52 +53,49 @@ class InstagramBot:
        sleep(2)
        self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
        sleep(2)
-       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
-       sleep(2)
-       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
-       sleep(2)
+       #self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
+       #sleep(2)
+       #self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
+       #sleep(2)
        self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button > svg").click()
        sleep(2)
        self.driver.back()
        self.driver.back()
 
-    #Authenticates a user profile: sorts out people who are following > 1500 and people who have already been commented on
-    #Assumes that the bot is already on a user profile.
-    def authenticateTarget(self):
-        sleep(2)   
-        if(self.followingUnder1500()):
-            return False
-        else:
-             return True    
-
     def doCommentRound(self):
         j = 1
         i = 0
-        while i < 15:
-            self.getFollower(j)
-            if(self.authenticateTarget):
-                self.comment(randomCommentText())
-                i+=1
-                j+=1
+        scrolled = False
+        while i <= 15:
+            if(scrolled):
+                self.getFollowerAfterScroll(j)
             else:
+                self.getFollower(j)  
+            
+            try:
+                if(self.followingUnder1500()):
+                    self.comment(randomCommentText())
+                    print("comment number " + str(i) + " on account number " + str(j))
+                    i+=1
+                    j+=1
+                else:
+                    j+=1
+                    self.driver.back()
+            except:
+                self.driver.back()
                 j+=1    
+            if(j > 5):
+                scrolled = True
+                target = self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(j) + ")")
+                self.driver.execute_script('arguments[0].scrollIntoView(true);', target)    
 
     def followingUnder1500(self):
+        sleep(5)
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
-
 if __name__ == '__main__':
-    ig_bot = InstagramBot('username', 'password')
-    ig_bot.search("movingtomars")
+    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
+    ig_bot.search("washed emotions")
     ig_bot.getFollowerList()
     sleep(2)
     ig_bot.doCommentRound()
-    print(randomCommentText())
-
-
-
-
-
-
-
-
