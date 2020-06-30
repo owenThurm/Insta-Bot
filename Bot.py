@@ -73,13 +73,15 @@ class InstagramBot:
                 self.getFollowerAfterScroll(j)
             else:
                 self.getFollower(j)  
-            sleep(2)    
-            username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text
+            sleep(2) 
+            try:   
+                username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text
+            except:
+                username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h1").text    
             try:
                 if(self.followingUnder1500() and not self.alreadyCommented(username)):
                    self.previousComments.write(username + " ")
                    self.comment(randomCommentText())
-                   print("appended: " + self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text)
                    print("comment number " + str(i) + " on account number " + str(j))
                    i+=1
                    j+=1
@@ -112,8 +114,8 @@ class InstagramBot:
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
 if __name__ == '__main__':
-    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
-    ig_bot.search("ok")
+    ig_bot = InstagramBot('username', 'password')
+    ig_bot.search("onewish")
     ig_bot.getFollowerList()
     sleep(2)
     ig_bot.doCommentRound()
