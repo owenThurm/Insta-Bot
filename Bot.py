@@ -9,6 +9,8 @@ class InstagramBot:
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.previousComments = open("Instagram_Comment_Names", "a")
+        self.previousCommentsUsernames = open("Instagram_Comment_Names", "r").read().split(" ")
         self.driver = webdriver.Chrome('/Users/othurm/Desktop/Insta-Bot/chromedriver')
         self.login()
 
@@ -53,10 +55,10 @@ class InstagramBot:
        sleep(2)
        self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
        sleep(2)
-       #self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
-       #sleep(2)
-       #self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
-       #sleep(2)
+       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
+       sleep(2)
+       self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
+       sleep(2)
        self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button > svg").click()
        sleep(2)
        self.driver.back()
@@ -71,13 +73,16 @@ class InstagramBot:
                 self.getFollowerAfterScroll(j)
             else:
                 self.getFollower(j)  
-            
+            sleep(2)    
+            username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text
             try:
-                if(self.followingUnder1500()):
-                    self.comment(randomCommentText())
-                    print("comment number " + str(i) + " on account number " + str(j))
-                    i+=1
-                    j+=1
+                if(self.followingUnder1500() and not self.alreadyCommented(username)):
+                   self.previousComments.write(username + " ")
+                   self.comment(randomCommentText())
+                   print("appended: " + self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text)
+                   print("comment number " + str(i) + " on account number " + str(j))
+                   i+=1
+                   j+=1
                 else:
                     j+=1
                     self.driver.back()
@@ -87,15 +92,28 @@ class InstagramBot:
             if(j > 5):
                 scrolled = True
                 target = self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(j) + ")")
-                self.driver.execute_script('arguments[0].scrollIntoView(true);', target)    
+                self.driver.execute_script('arguments[0].scrollIntoView(true);', target)  
+        self.previousComments.close()         
+
+
+    def alreadyCommented(self, username):
+        print(self.previousCommentsUsernames)
+        print(username)
+        for commented_on_user in self.previousCommentsUsernames:
+            if(commented_on_user == username):
+                print("decided that it was in this list")
+                return True
+        print("decided that it wasnt in this list")
+        return False        
+
 
     def followingUnder1500(self):
         sleep(5)
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
 if __name__ == '__main__':
-    ig_bot = InstagramBot('username', 'password')
-    ig_bot.search("washed emotions")
+    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349')
+    ig_bot.search("ok")
     ig_bot.getFollowerList()
     sleep(2)
     ig_bot.doCommentRound()
