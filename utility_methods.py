@@ -22,7 +22,34 @@ def randomCommentText():
                 "Dope shot! when you get the chance shoot a dm to @genuineaesthetic",
                 "Dope shot! when you’re free shoot a dm to @genuineaesthetic",
                 "Dope shot! when you’re free dm @genuineaesthetic!",
-                "Dope shot! dm @genuineaesthetic whenever you’re free!"]
+                "Dope shot! dm @genuineaesthetic whenever you’re free!",
+                "Vibes! shoot @genuineaesthetic a dm whenever you get the chance",
+                "Vibes! when you get a chance shoot a dm to @genuineaesthetic",
+                "it's a vibe fr! dm @genuineaesthetic when you can",
+                "vibes fr! dm @genuineaesthetic when you can",
+                "Vibes! whenever you get the time shoot a dm to @genuineaesthetic",
+                "Vibes! if you're free shoot a dm to @genuineaesthetic",
+                "Vibes! shoot a dm to @genuineaesthetic if you're free",
+                "Hope you're having a good day! when you get the cahnce shoot a dmto @genuineaesthetic",
+                "Hope you're having a good day! when you're free shoot a dm to @genuineaesthetic",
+                "Hope you're having a good day! if you get the time shoot a dm to @genuineaesthetic",
+                "Hope you're having a good day! whenver you get a chance dm @genuineaesthetic",
+                "Hope you're having a good day! dm @genuineaestheitc whenever you're free!",
+                "Hope you're having a good day! if you have the time shoot a dm to @genuineaesthetic",
+                "Dope style! shoot a dm to @genuineaesthetic when you can!",
+                "Dope style! dm @genuineaesthetic when you get the chance!",
+                "Dope style fr! dm @genuineaesthetic when you're free",
+                "Dope style fr! if you get the chance, shoot a dm to @genuineaesthetic",
+                "Dope style fr! whenever you get the time shoot a dm to @genuineaesthetic",
+                "That's whats up, if you get the chance shoot a dm to @genuineaesthetic",
+                "That's whats up, when you get the chacne shoot a dm to @genuineaesthetic",
+                "That's whats up, shoot a dm to @genuineaesthetic whenever you can",
+                "That's whats up, when you get a chance dm @genuineaesthetic",
+                "That's whats up, whenever you find the time shoot a dm to @genuineaesthetic",
+                "That's whats up, if you get a chance dm @genuineaesthetic",
+                "That's whats up, dm @genuineaesthetic when you can",
+                "That's whats up, dm @genuineaesthetic whenever you get the chance to",
+                "That's whats up, dm @genuineaesthetic if you have the time!"]
     return comments[math.floor(random.random()*len(comments))]
 
 
@@ -47,5 +74,4 @@ if __name__ == '__main__':
                 "Dope shot🤟 when you get the chance shoot a dm to @genuineaesthetic 🙏",
                 "Dope shot🙌 when you’re free shoot a dm to @genuineaesthetic👌",
                 "Dope shot🙏 when you’re free dm @genuineaesthetic🙌",
-                "Dope shot🙌 dm @genuineaesthetic whenever you’re free🙏"]
-    print(randomCommentText(comments))    
+                "Dope shot🙌 dm @genuineaesthetic whenever you’re free🙏"]   
