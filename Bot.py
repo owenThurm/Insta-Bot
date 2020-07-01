@@ -22,8 +22,14 @@ class InstagramBot:
     def login(self):
      self.driver.get('https://www.instagram.com/accounts/login/')
      sleep(math.floor(random.random() * 3 + 2))
-     self.driver.find_element_by_name("username").send_keys(self.username)
-     self.driver.find_element_by_name("password").send_keys(self.password)
+     username_field = self.driver.find_element_by_name("username")
+     for char in self.username:
+         sleep(random.random()/4)
+         username_field.send_keys(char)
+     password_field = self.driver.find_element_by_name("password")
+     for char in self.password:
+         sleep(random.random()/4)
+         password_field.send_keys(char)
      self.driver.find_element_by_css_selector(
          "#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button").click()
 
@@ -32,7 +38,10 @@ class InstagramBot:
         #click search bar
         self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div").click()
         #type searchText
-        self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > input").send_keys(searchText)
+        searchBox = self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > input")
+        for char in searchText:
+            sleep(random.random()/4)
+            searchBox.send_keys(char)
         sleep(math.floor(random.random() * 3 + 3))
         #select first option
         self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div:nth-child(4) > div.drKGC > div > a:nth-child(1)").click()
@@ -64,7 +73,10 @@ class InstagramBot:
                 sleep(math.floor(random.random() * 2 + 1))
                 self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
                 sleep(math.floor(random.random() * 3 + 2))
-                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
+                commentBox = self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea")
+                for char in commentText:
+                    sleep(random.random()/4)
+                    commentBox.send_keys(char)
                 sleep(math.floor(random.random() * 3 + 2))
                 self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
                 sleep(math.floor(random.random() * 3 + 2))
@@ -142,6 +154,6 @@ class InstagramBot:
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
 if __name__ == '__main__':
-    ig_bot = InstagramBot('owenthurm', 'Gandolf1', 'florida.hype')
+    ig_bot = InstagramBot('username', 'password', 'brand name')
     sleep(math.floor(random.random() * 3 + 2))
     ig_bot.doCommentRound()
