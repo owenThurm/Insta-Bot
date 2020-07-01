@@ -30,7 +30,7 @@ def randomCommentText():
                 "Vibes! whenever you get the time shoot a dm to @genuineaesthetic",
                 "Vibes! if you're free shoot a dm to @genuineaesthetic",
                 "Vibes! shoot a dm to @genuineaesthetic if you're free",
-                "Hope you're having a good day! when you get the cahnce shoot a dmto @genuineaesthetic",
+                "Hope you're having a good day! when you get the chance shoot a dmto @genuineaesthetic",
                 "Hope you're having a good day! when you're free shoot a dm to @genuineaesthetic",
                 "Hope you're having a good day! if you get the time shoot a dm to @genuineaesthetic",
                 "Hope you're having a good day! whenver you get a chance dm @genuineaesthetic",

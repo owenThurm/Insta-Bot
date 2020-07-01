@@ -58,25 +58,34 @@ class InstagramBot:
             sleep(math.floor(random.random() * 3 + 2))
             #click the latest post
             self.driver.find_element_by_css_selector("#react-root > section > main > div > div._2z6nI > article > div > div > div:nth-child(1) > div:nth-child(1) > a").click()
-            sleep(math.floor(random.random() * 3 + 2))
-            self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span.fr66n > button").click()
-            sleep(math.floor(random.random() * 2 + 1))
-            self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
-            sleep(math.floor(random.random() * 3 + 2))
-            self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
-            sleep(math.floor(random.random() * 3 + 2))
-            self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
-            sleep(math.floor(random.random() * 3 + 2))
-            self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button > svg").click()
-            sleep(math.floor(random.random() * 3 + 2))
-            self.driver.back()
-            self.driver.back()
+            try:    
+                sleep(math.floor(random.random() * 3 + 2))
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span.fr66n > button").click()
+                sleep(math.floor(random.random() * 2 + 1))
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
+                sleep(math.floor(random.random() * 3 + 2))
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea").send_keys(commentText)
+                sleep(math.floor(random.random() * 3 + 2))
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
+                sleep(math.floor(random.random() * 3 + 2))
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button > svg").click()
+                sleep(math.floor(random.random() * 3 + 2))
+                self.driver.back()
+                sleep(math.floor(random.random() * 3 + 1))
+                self.driver.back()
+            except: 
+                print('commenting on post failed')
+                sleep(math.floor(random.random() * 3 + 2))
+                #backs out of the post
+                self.driver.back()
+                sleep(math.floor(random.random() * 3 + 1))
+                #backs out of the profile
+                self.driver.back()   
         except:
-            print('specific comment action failed')
+            print('sselecting latest post failed')
             sleep(math.floor(random.random() * 3 + 3))
-            self.driver.get('https://www.instagram.com/' + str(self.brand) + '/')
-            sleep(math.floor(random.random() * 3 + 3))
-            self.getFollowerList()
+            #backs out of the profile
+            self.driver.back()
 
 
     def doCommentRound(self):
@@ -116,6 +125,8 @@ class InstagramBot:
             except:
                 print('overall comment round failed')
                 j+=1
+            if(j > 300):
+                break    
         self.previousComments.close()         
 
 
@@ -131,6 +142,6 @@ class InstagramBot:
         return (int(ig_bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span").text.replace(',', '')) < 1500)
     
 if __name__ == '__main__':
-    ig_bot = InstagramBot('username', 'password', 'exact brand name')
+    ig_bot = InstagramBot('owenthurm', 'Gandolf1', 'florida.hype')
     sleep(math.floor(random.random() * 3 + 2))
     ig_bot.doCommentRound()
