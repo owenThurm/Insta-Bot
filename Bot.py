@@ -49,7 +49,7 @@ class InstagramBot:
             searchBox.send_keys(char)
         sleep(math.floor(random.random() * 3 + 3))
         #select first option
-        self.driver.find_element_by_css_selector("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.LWmhU._0aCwM > div:nth-child(4) > div.drKGC > div > a:nth-child(1)").click()
+        self.driver.find_element_by_css_selector("span.Ap253").click()
 
     def getFollowerList(self):
         sleep(math.floor(random.random() * 3 + 2))
@@ -59,20 +59,21 @@ class InstagramBot:
     def getFollowerAfterScroll(self, followerNum):
         sleep(math.floor(random.random() * 3 + 2))
         #gets the follower that corresponds to followerNum
-        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.t2ksc > div.enpQJ > div.d7ByH > a").click()
+        #self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.t2ksc > div.enpQJ > div.d7ByH > a").click()
+        self.driver.find_elements_by_css_selector("a.FPmhX")[followerNum].click()
 
 
     def getFollower(self, followerNum):
         sleep(math.floor(random.random() * 3 + 2))
         #gets the follower that corresponds to followerNum
-        self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()    
-
+        #self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()
+        self.driver.find_elements_by_css_selector("a.FPmhX")[followerNum].click()
     def comment(self, commentText):
-        try:    
+        try:
             sleep(math.floor(random.random() * 3 + 2))
             #click the latest post
             self.driver.find_element_by_css_selector("#react-root > section > main > div > div._2z6nI > article > div > div > div:nth-child(1) > div:nth-child(1) > a").click()
-            try:    
+            try:
                 sleep(math.floor(random.random() * 3 + 2))
                 self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span.fr66n > button").click()
                 sleep(math.floor(random.random() * 2 + 1))
@@ -90,20 +91,19 @@ class InstagramBot:
                 self.driver.back()
                 sleep(math.floor(random.random() * 3 + 1))
                 self.driver.back()
-            except: 
+            except:
                 print('commenting on post failed')
                 sleep(math.floor(random.random() * 3 + 2))
                 #backs out of the post
                 self.driver.back()
                 sleep(math.floor(random.random() * 3 + 1))
                 #backs out of the profile
-                self.driver.back()   
+                self.driver.back()
         except:
             print('sselecting latest post failed')
             sleep(math.floor(random.random() * 3 + 3))
             #backs out of the profile
             self.driver.back()
-
 
     def doCommentRound(self):
         j = 1
