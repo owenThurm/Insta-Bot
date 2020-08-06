@@ -28,7 +28,7 @@ def randomCommentText():
                 "It's a vibe fr! dm @genuineaesthetic when you get the time",
                 "It's a vibe fr! dm @genuineaesthetic when you get the chance",
                 "It's a vibe fr! dm @genuineaesthetic when you get a chance",
-                "It's a vibe fr! dm @genuineaesthetic whenever you can"
+                "It's a vibe fr! dm @genuineaesthetic whenever you can",
                 "Dope shot! dm @genuineaesthetic when you can",
                 "Dope shot! dm @genuineaesthetic when you can",
                 "Dope shot! dm @genuineaesthetic whenever you get the chance!",
@@ -39,7 +39,7 @@ def randomCommentText():
                 "Dope shot! when you get some time shoot a dm to @genuineaesthetic",
                 "Dope shot! shoot a dm to @genuineaesthetic when you get the time",
                 "Dope shot! shoot a dm to @genuineaesthetic when you get a chance",
-                "Dope shot! shoot a dm to @genuineaesthetic when you get the chance"
+                "Dope shot! shoot a dm to @genuineaesthetic when you get the chance",
                 "Dope shot fr! shoot a dm to @genuineaesthetic when you get the time",
                 "Dope shot fr! shoot a dm to @genuineaesthetic whenever your get a chance",
                 "Dope shot fr! whenever you're free shoot a dm to @genuineaesthetic",
@@ -51,7 +51,7 @@ def randomCommentText():
                 "Vibes fr! dm @genuineaesthetic whenever you get the chance",
                 "Vibes fr! dm @genuineaesthetic whenever you're free!",
                 "Vibes fr! dm @genuineaesthetic when you find the time!",
-                "Vibes! if you get a chance shoot a dm to @genuineaesthetic"
+                "Vibes! if you get a chance shoot a dm to @genuineaesthetic",
                 "it's a vibe fr! dm @genuineaesthetic when you can",
                 "vibes fr! dm @genuineaesthetic when you can",
                 "Vibes! whenever you get the time shoot a dm to @genuineaesthetic",
@@ -70,7 +70,7 @@ def randomCommentText():
                 "Hope you're having a good day! shoot a dm to @genuineaesthetic when you get a chance",
                 "Hope you're having a good day! shoot a dm to @genuineaesthetic whenever you get a chance",
                 "Hope you're having a good day! shoot a dm to @genuineaesthetic when you get the time",
-                "Hope you're having a good day! shoot a dm to @genuineaesthetic whenever you're free!"
+                "Hope you're having a good day! shoot a dm to @genuineaesthetic whenever you're free!",
                 "Dope style! shoot a dm to @genuineaesthetic when you can!",
                 "Dope style! dm @genuineaesthetic when you get the chance!",
                 "Dope style! dm @genuineaesthetic whenever you get the chance!",
@@ -81,7 +81,7 @@ def randomCommentText():
                 "Dope style! whenever you get the time shoot a dm to @genuineaesthetic",
                 "Dope style! whenever you can, shoot a dm to @genuineaesthetic",
                 "Dope style! whenever you get a chance shoot a dm to @genuineaesthetic",
-                "Dope style! whenever you get the chance, shoot a dm to @genuineaesthetic"
+                "Dope style! whenever you get the chance, shoot a dm to @genuineaesthetic",
                 "Dope style fr! dm @genuineaesthetic when you're free",
                 "Dope style fr! if you get the chance, shoot a dm to @genuineaesthetic",
                 "Dope style fr! whenever you get the time shoot a dm to @genuineaesthetic",
@@ -168,7 +168,7 @@ def randomCommentTextMain():
                 "Vibes fr! dm us whenever you get the chance",
                 "Vibes fr! dm us whenever you're free!",
                 "Vibes fr! dm us when you find the time!",
-                "Vibes! if you get a chance shoot a dm to us"
+                "Vibes! if you get a chance shoot a dm to us",
                 "it's a vibe fr! dm us when you can",
                 "vibes fr! dm us when you can",
                 "Vibes! whenever you get the time shoot a dm to us",
@@ -187,7 +187,7 @@ def randomCommentTextMain():
                 "Hope you're having a good day! shoot a dm to us when you get a chance",
                 "Hope you're having a good day! shoot a dm to us whenever you get a chance",
                 "Hope you're having a good day! shoot a dm to us when you get the time",
-                "Hope you're having a good day! shoot a dm to us whenever you're free!"
+                "Hope you're having a good day! shoot a dm to us whenever you're free!",
                 "Dope style! shoot a dm to us when you can!",
                 "Dope style! dm us when you get the chance!",
                 "Dope style! dm us whenever you get the chance!",
@@ -198,7 +198,7 @@ def randomCommentTextMain():
                 "Dope style! whenever you get the time shoot a dm to us",
                 "Dope style! whenever you can, shoot a dm to us",
                 "Dope style! whenever you get a chance shoot a dm to us",
-                "Dope style! whenever you get the chance, shoot a dm to us"
+                "Dope style! whenever you get the chance, shoot a dm to us",
                 "Dope style fr! dm us when you're free",
                 "Dope style fr! if you get the chance, shoot a dm to us",
                 "Dope style fr! whenever you get the time shoot a dm to us",
