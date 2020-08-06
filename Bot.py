@@ -35,8 +35,7 @@ class InstagramBot:
      for char in self.password:
          sleep(random.random()/10)
          password_field.send_keys(char)
-     self.driver.find_element_by_css_selector(
-         "#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button").click()
+     self.driver.find_elements_by_xpath("//*[text()='Log In']")[0].click()
 
     def search(self, searchText):
         sleep(math.floor(random.random() * 3 + 4))
