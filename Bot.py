@@ -67,6 +67,7 @@ class InstagramBot:
         #gets the follower that corresponds to followerNum
         #self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(followerNum) + ") > div > div.Igw0E.IwRSH.YBx95.vwCYk > div > div > div > a").click()
         self.driver.find_elements_by_css_selector("a.FPmhX")[followerNum].click()
+    
     def comment(self, commentText):
         try:
             sleep(math.floor(random.random() * 3 + 2))
@@ -78,20 +79,20 @@ class InstagramBot:
             try:
                 print("Post selected...")
                 sleep(math.floor(random.random() * 3 + 2))
-                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.eo2As > section.ltpMr.Slqrh > span.fr66n > button").click()
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span.fr66n > button").click()
                 print("Media liked.")
                 sleep(math.floor(random.random() * 2 + 1))
                 #print("here2")
-                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button").click()
                 sleep(math.floor(random.random() * 3 + 2))
-                commentBox = self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div >  div.eo2As > section.sH9wk._JgwE > div > form > textarea")
+                commentBox = self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea")
                 for char in commentText:
                     sleep(random.random()/10)
                     commentBox.send_keys(char)
                 print("Media commented.")
                 sleep(math.floor(random.random() * 3 + 2))
                 # Hit the post button
-                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div >  div.eo2As > section.sH9wk._JgwE > div > form > button").click()
+                self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > section.sH9wk._JgwE > div > form > button").click()
                 sleep(math.floor(random.random() * 3 + 2))
                 #self.driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button > svg").click()
                 #print("Final click thing.")
@@ -115,6 +116,7 @@ class InstagramBot:
             #backs out of the profile
             self.driver.back()
             return False
+
 
 
     def doCommentRound(self):
