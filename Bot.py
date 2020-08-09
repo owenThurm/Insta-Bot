@@ -4,8 +4,10 @@ import time
 from time import sleep
 from utility_methods import randomCommentText 
 from utility_methods import randomCommentTextMain
+from datetime import datetime
 import random
 import math
+import traceback
 
 class InstagramBot:
 
@@ -117,63 +119,62 @@ class InstagramBot:
             self.driver.back()
             return False
 
-
-
     def doCommentRound(self):
         j = 1
         i = 0
         scrolled = False
         while i < 15:
+            #try:
+            if(j > 5):
+                scrolled = True
+                target = self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(j) + ")")
+                self.driver.execute_script('arguments[0].scrollIntoView(true);', target)
+            if(scrolled):
+                self.getFollowerAfterScroll(j)
+                print("\nGot follow after scroll")
+            else:
+                self.getFollower(j)
+                print("\nGot follower not scrolled yet")
+            sleep(math.floor(random.random() * 3 + 3))
             try:
-                if(j > 5):
-                    scrolled = True
-                    target = self.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div > li:nth-child(" + str(j) + ")")
-                    self.driver.execute_script('arguments[0].scrollIntoView(true);', target)
-                if(scrolled):
-                    self.getFollowerAfterScroll(j)
-                    print("\nGot follow after scroll")
-                else:
-                    self.getFollower(j)
-                    print("\nGot follower not scrolled yet")
-                sleep(math.floor(random.random() * 3 + 3))
-                try:
-                    username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text
-                    print("Got username: " + username)
-                except:
-                    username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h1").text
-                    print("Got username: " + username)
-                try:
-                    if(self.followingUnder1500() and not self.alreadyCommented(username)):
-                        if(self.is_main):
-                            if(self.comment(randomCommentTextMain())):
-                                i+=1
-                                print('Commented on ' + username)
-                                print("Comment number " + str(i) + " on account number " + str(j))
-                                self.previousComments.write(username + " ")
-                                print("Added username " + username)
-                        else:
-                            if(self.comment(randomCommentText())):
-                                i+=1
-                                print('Commented on ' + username)
-                                print("Comment number " + str(i) + " on account number " + str(j))
-                                self.previousComments.write(username + " ")
-                                print("Added username " + username)
-                        #i+=1
-                        j+=1
-                    else:
-                        j+=1
-                        self.driver.back()
-                except:
-                    print('Unable to comment')
-                    self.driver.back()
-                    j+=1
+                username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h2").text
+                print("Got username: " + username)
             except:
-                print('Overall comment round failed')
+                username = self.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > h1").text
+                print("Got username: " + username)
+            try:
+                if(self.followingUnder1500() and not self.alreadyCommented(username)):
+                    now = datetime.now()
+                    if(self.is_main):
+                        if(self.comment(randomCommentTextMain())):
+                            i+=1
+                            print('Commented on ' + username)
+                            print("(Comment number " + str(i) + " on account number " + str(j) + ") <----------------------- At " + str(now.hour % 12) + ":" + str(now.minute))
+                            self.previousComments.write(username + " ")
+                            print("Added username " + username)
+                    else:
+                        if(self.comment(randomCommentText())):
+                            i+=1
+                            print('Commented on ' + username)
+                            print("(Comment number " + str(i) + " on account number " + str(j) + ") <----------------------- At " + str(now.hour % 12) + ":" + str(now.minute))
+                            self.previousComments.write(username + " ")
+                            print("Added username " + username)
+                    j+=1
+                else:
+                    j+=1
+                    self.driver.back()
+            except Exception as e:
+                print(traceback.format_exc())
+                print(e)
+                print('Unable to comment')
+                self.driver.back()
                 j+=1
+            #except:
+            #    print('Overall comment round failed')
+            #    j+=1
             if(j > 300):
                 break
         self.previousComments.close()
-
 
     def alreadyCommented(self, username):
         for commented_on_user in self.previousCommentsUsernames:
@@ -206,6 +207,6 @@ class InstagramBot:
     
 if __name__ == '__main__':
     #4th argument indicates whether or not the account is the main account
-    ig_bot = InstagramBot('username', 'password', 'brand name', False)
+    ig_bot = InstagramBot('upcomingstreetwearfashion', '3070349', 'konstitute', False)
     sleep(math.floor(random.random() * 3 + 2))
     ig_bot.doCommentRound()
