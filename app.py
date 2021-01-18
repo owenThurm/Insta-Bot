@@ -175,7 +175,7 @@ class InstagramBot:
                 element = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.CLASS_NAME, "-nal3 "))
                 )
-                sleep(random.random() / 2 + 0.1)
+                sleep(random.random() / 2 + 0.5)
             except Exception as e:
                 print("Failed to wait for person's profile to load>>>")
                 print(e)
@@ -224,16 +224,16 @@ class InstagramBot:
                     return False
             except:
                 print('Commenting on post failed')
-                sleep(math.floor(random.random() * 3 + 2))
-                #backs out of the post
+                sleep(math.floor(random.random() + 0.3))
+                # backs out of the post
                 self.driver.back()
-                sleep(math.floor(random.random() * 3 + 1))
-                #backs out of the profile
+                sleep(math.floor(random.random() + 0.4))
+                # backs out of the profile
                 self.driver.back()
                 return False
         except:
             print('Selecting latest post failed')
-            sleep(math.floor(random.random() * 3 + 3))
+            #sleep(math.floor(random.random() * 3 + 3))
             #backs out of the profile
             self.driver.back()
             return False
@@ -245,7 +245,7 @@ class InstagramBot:
         scrolled = False
         ac = ActionChains(self.driver)
         dms = self.driver.find_element_by_class_name("xWeGp")
-        while i < 13:
+        while i < 5:
             try:
                 if(j > 5):
                     scrolled = True
@@ -346,6 +346,9 @@ class InstagramBot:
         except:
             print("Get number of followers failed")
             return False
+        
+    def quit(self):
+        self.driver.quit()
 
 if __name__ == '__main__':
     #4th argument indicates whether or not the account is the main account
