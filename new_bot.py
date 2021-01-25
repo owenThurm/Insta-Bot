@@ -325,11 +325,11 @@ class InstagramBot:
 if __name__ == '__main__':
     #4th argument indicates whether or not the account is the main account
 
-    user1 = "streetwearlatest"
-    user1_pass = "Julia26"
+    user1 = "username"
+    user1_pass = "password"
 
-    user3 =  "upcomingfashionbrand"
-    user3_pass = "julia26"
+    user3 =  "username"
+    user3_pass = "password"
     
     main1 = "genuineaesthetic"
     main1_pass = "MagicJohnson32!"
@@ -342,7 +342,7 @@ if __name__ == '__main__':
     #ig_bot = InstagramBot(user2,user2_pass,'movingto.mars',False)
     #ig_bot = InstagramBot(user1,user1_pass,'scummy__apparel',False)
     #ig_bot = InstagramBot(user1,user1_pass,'verborgenstudios',False)
-    ig_bot = InstagramBot(user1,user1_pass,'yourstrulyclothing',False)
+    #ig_bot = InstagramBot(user1,user1_pass,'yourstrulyclothing',False)
     #ig_bot = InstagramBot(user1,user1_pass,'zumiez',False)
     #ig_bot = InstagramBot(main1,main1_pass,'novaluestreetwear',False)
     #ig_bot = InstagramBot(main1,main1_pass,'hufworldwide',True)
