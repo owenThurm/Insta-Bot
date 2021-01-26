@@ -216,7 +216,7 @@ class InstagramBot:
             Returns a list of followers after scrolling through the modal.
         '''
         
-        SCROLL_PAUSE = 0.5  # Pause to allow loading of content
+        SCROLL_PAUSE = 0.6  # Pause to allow loading of content
         self.driver.execute_script("followersbox = document.getElementsByClassName('isgrP')[0];")
         last_height = self.driver.execute_script("return followersbox.scrollHeight;")
         
@@ -233,7 +233,7 @@ class InstagramBot:
 
             # Calculate new scrollHeight and compare with the previous
             new_height = self.driver.execute_script("return followersbox.scrollHeight;")
-            if new_height == last_height or len(self.driver.find_elements_by_css_selector(selector)) == 30:
+            if new_height == last_height or len(self.driver.find_elements_by_css_selector(selector)) >= 50:
                 break
             last_height = new_height
             print(self.driver.find_elements_by_css_selector(selector))
@@ -264,6 +264,10 @@ class InstagramBot:
         comments_done = 0
         # For every folllower name, go to follower url and comment until comments_done reaches target amount.
         for follower in followers:
+            
+            if follower in self.previousCommentsUsernames:
+                continue
+            
             self.goToFollower(follower)
             
             comment = randomCommentText()
