@@ -43,7 +43,7 @@ class InstagramBot:
         #chrome_options.add_argument('start-maximized') #
         #chrome_options.add_argument('disable-infobars')
         #chrome_options.add_argument("--disable-extensions")
-        chrome_options.add_argument('--proxy-server=%s' % PROXY)
+        #chrome_options.add_argument('--proxy-server=%s' % PROXY)
 
 
         chrome_options.add_argument("--window-size=1920x1080")
