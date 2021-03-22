@@ -6,9 +6,10 @@ from utility_methods import randomCommentText
 from utility_methods import randomCommentTextMain
 import random
 import math
+import sys
 from datetime import datetime
 from selenium.webdriver.common.action_chains import ActionChains
-import pyautogui
+#import pyautogui
 from threading import Thread
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,7 +19,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import emoji
-
 
 PROXY = "91.229.245.187:21289" #HOST:PORT
 PROXY_USERNAME = "bobdill32984"
@@ -88,16 +88,10 @@ class InstagramBot:
             run = func()
             print("Run:",run)
             if not run:
-                sys.exit("Pre comment round processes failed")
-
-        # Login to Your Account
-        # self.login()
-        # Goes the URL of target brand
-        # self.get_brand()
-        # print("got brand")
-        # Click on list of followers
-        # self.getFollowerList()
-
+                #sys.exit("Pre comment round processes failed")
+                print("Pre comment round processes failed")
+                return False
+        return True
 
     def login(self):
         try:
@@ -170,7 +164,7 @@ class InstagramBot:
             )
             sleep(random.random() / 2 + 0.1)
         except Exception as e:
-            print("Failed to wait for followers>>>", e)
+            print("Failed to wait for brand page to load>>>", e)
             return False
             # self.driver.quit()
 
@@ -369,10 +363,8 @@ class InstagramBot:
         '''
 
         SCROLL_PAUSE = 0.8  # Pause to allow loading of content
-        self.driver.execute_script(
-            "followersbox = document.getElementsByClassName('isgrP')[0];")
-        last_height = self.driver.execute_script(
-            "return followersbox.scrollHeight;")
+        self.driver.execute_script("followersbox = document.getElementsByClassName('isgrP')[0];")
+        last_height = self.driver.execute_script("return followersbox.scrollHeight;")
 
         # Finally, scrape the followers
         selector = "a.FPmhX"
@@ -402,6 +394,21 @@ class InstagramBot:
         print("______________________________________")
         print("SCRAPED FOLLOWERS")
         return followers
+
+    # To be used to get the number of comments on a post
+    def getNumberOfComments(self):
+        return len(self.driver.find_elements_by_class_name("Mr508"))
+
+
+    # To be used to check if a comment was successfully posted
+    def checkCommentDidPost(self, num_comments_before):
+        return self.getNumberOfComments() > num_comments_before
+
+    # To be used to go to a instagram follower account page
+    def goToFollower(self,follower):
+        sleep(random.random() + 0.5)
+        self.driver.get(f"https://www.instagram.com/{follower}/")
+        sleep(random.random() + 0.5)
 
     # To be used to get the number of comments on a post
     def getNumberOfComments(self):
@@ -827,15 +834,16 @@ def lambda_handler(event, context):
 if __name__ == '__main__':
     #4th argument indicates whether or not the account is the main account
 
-    user1 = "streetwearlatest"
-    user1_pass = "Julia26"
+    user1 = ""
+    user1_pass = ""
 
     user3 =  "username"
     user3_pass = "password"
 
     main1 = "genuineaesthetic"
-    main1_pass = "MagicJohnson32!"
+    main1_pass = ""
 
+    #ig_bot = InstagramBot(user1, user1_pass, 'zumiez', False)
     #ig_bot = InstagramBot(user2,user2_pass,'fuckit.jp',False)
     #ig_bot = InstagramBot(user3,user3_pass,'heartlessclothingco',False)
     #ig_bot = InstagramBot(user3,user3_pass,'vzn_clothing',False)
@@ -843,7 +851,7 @@ if __name__ == '__main__':
     #ig_bot = InstagramBot(user2,user2_pass,'bmeboston',False)
     #ig_bot = InstagramBot(user2,user2_pass,'movingto.mars',False)
     #ig_bot = InstagramBot(user1,user1_pass,'scummy__apparel',False)
-    ig_bot = InstagramBot(user1,user1_pass,'bmeboston',True)
+    ig_bot = InstagramBot(user1,user1_pass,'verborgenstudios',True)
     ig_bot.perform_preprocess()
     #ig_bot = InstagramBot(user1,user1_pass,'yourstrulyclothing',False)
     #ig_bot = InstagramBot(user1,user1_pass,'zumiez',False)
